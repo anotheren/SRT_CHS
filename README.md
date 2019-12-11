@@ -50,9 +50,9 @@ Initially developed by Haivision Systems Inc., the SRT protocol was released as 
 
 SRT 协议最初由 Haivision Systems Inc. 开发，于 2017 年 4 月与 Wowza Media Systems Inc. 合作以开源形式发布。SRT 协议是基于 MPL-2.0 发行的，因为它在推动开放与鼓励使用者对社区做出贡献之间取得了平衡。任何第三方都可以免费地在大型项目中使用 SRT 代码，而无需担心这些代码是如何参与编译的。但是如果他们更改了源代码，则他们有义务向社区提供这些更改。
 
-In May 2017, Haivision and Wowza founded the SRT Alliance (www.srtalliance.org), a consortium dedicated to the continued development and adoption of the protocol.
+In May 2017, Haivision and Wowza founded the SRT Alliance ([www.srtalliance.org](www.srtalliance.org)), a consortium dedicated to the continued development and adoption of the protocol.
 
-2017 年 5 月，Haivision 和 Wowza 成立了 SRT 联盟（www.srtalliance.org），该联盟致力于继续开发和采用该协议。
+2017 年 5 月，Haivision 和 Wowza 成立了 SRT 联盟（[www.srtalliance.org](www.srtalliance.org)），该联盟致力于继续开发和采用该协议。
 
 ## Table of Contents 目录
 
