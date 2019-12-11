@@ -56,9 +56,11 @@ In May 2017, Haivision and Wowza founded the SRT Alliance ([www.srtalliance.org]
 
 ## Table of Contents 目录
 
-### Adaptation of UDT4 to SRT Packet Structure 从 UDT4 到 SRT 数据包结构的改进
+### [Adaptation of UDT4 to SRT Packet Structure](./ADAPTATION_OF_UDT4_TO_SRT_PACKET_STRUCTURE.md) 从 UDT4 到 SRT 数据包结构的改进
 
-### Data and Control Packets Handshake Packets
+### Packet Structure
+* Data and Control Packets 
+* Handshake Packets
 * KM Error Packets
 * ACK Packets
 * Keep-alive Packets
