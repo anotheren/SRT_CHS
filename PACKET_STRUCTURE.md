@@ -23,17 +23,17 @@ SRT 有两种包，其中数据包头中 PH_SEQNO 字段的第一位区分数据
 
 ![PACKET_STRUCTURE_1](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_1.jpg)
 
-* **FF​**​ = (2 bits) Position of packet in message, where:
-    * 10b = 1st
-    * 00b = middle
-    * 01b = last
-    * 11b = single
-* **O​**​ = (1 bit) Indicates whether the message should be delivered in order (1) or not (0). In File/Message mode (original UDT with UDT_DGRAM) when this bit is clear then a message that is sent later (but reassembled before an earlier message which may be incomplete due to packet loss) is allowed to be delivered immediately, without waiting for the earlier message to be completed. This is not used in Live mode because there‘s a completely different function used for data extraction when TSBPD mode is on.
-* **KK​**​ = (2 bits) Indicates whether or not data is encrypted:
-    * 00b: not encrypted
-    * 01b: encrypted with even key
-    * 10b: encrypted with odd key
-* **R**​​ = (1 bit) Retransmitted packet. This flag is clear (0) when a packet is transmitted the very first time, and is set (1) if the packet is retransmitted.
+* **FF​**​ = (2 bits) Position of packet in message 表示数据包在消息中的位置, where:
+    * 10b = 1st 第一个
+    * 00b = middle 中间
+    * 01b = last 最后一个
+    * 11b = single 独立包
+* **O​**​ = (1 bit) Indicates whether the message should be delivered in order (1) or not (0). In File/Message mode (original UDT with UDT_DGRAM) when this bit is clear then a message that is sent later (but reassembled before an earlier message which may be incomplete due to packet loss) is allowed to be delivered immediately, without waiting for the earlier message to be completed. This is not used in Live mode because there‘s a completely different function used for data extraction when TSBPD mode is on. 表示是（1）否（0）应按顺序传递消息。 在文件/消息模式（带 UDT_DGRAM 的原始 UDT）中，当该位清零时，允许立即发送稍后发送的消息（但在先前的消息之前重新组合，由于消息丢失，该消息可能不完整），而无需等待 较早的消息要完成。在实时模式下不使用此功能，因为在打开 TSBPD 模式时，用于数据提取的功能完全不同。
+* **KK​**​ = (2 bits) Indicates whether or not data is encrypted: 表示是否应该加密
+    * 00b: not encrypted 不加密
+    * 01b: encrypted with even key 用偶数密钥加密
+    * 10b: encrypted with odd key 用奇数密钥加密
+* **R**​​ = (1 bit) Retransmitted packet. This flag is clear (0) when a packet is transmitted the very first time, and is set (1) if the packet is retransmitted. 重发的数据包。第一次发送数据包时，此标志清除（0），如果重新传输数据包，则设置（1）
 
 In Data packets, the third and fourth fields are interpreted as follows:
 
