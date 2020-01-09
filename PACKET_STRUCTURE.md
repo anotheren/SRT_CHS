@@ -72,15 +72,73 @@ For Control packets the first two fields are interpreted respectively (using net
     | 0x7FFF | 3 | SRT_KMREQ: Encryption Keying Material Request |
     | 0x7FFF | 4 | SRT_KMRSP: Encryption Keying Material Response |
 
-    The Extended Message mechanism is theoretically open for further extensions. SRT uses some of them for its own purposes. This will be referred to later in the section on the SRT Extended Handshake. 理论上，扩展消息机制对进一步扩展是开放的。SRT 将其中一些用于自己的目的。 稍后将在“SRT 扩展握手”部分中对此进行介绍。
+    The Extended Message mechanism is theoretically open for further extensions. SRT uses some of them for its own purposes. This will be referred to later in the section on the SRT Extended Handshake. 
+    
+    理论上，扩展消息机制对进一步扩展是开放的。SRT 将其中一些用于自己的目的。 稍后将在“SRT 扩展握手”部分中对此进行介绍。
 
 * Word 1:
     * Additional info — used in some control messages as extra space for data. Its interpretation depends on the particular message type. Handshake messages don‘t use it. 其他信息，在某些控制消息中用作额外的数据空间。其解释取决于特定的消息类型。握手消息不使用它。
 
+## Handshake Packets **握手数据包**
 
+Handshake control packets (“packet type” bit = 1) are used to establish a connection between two peers in a point-to-point SRT session. Original versions of SRT relied on handshake extensions to exchange certain parameters immediately after a connection was opened, but as of version 1.3 an integrated mechanism ensures all parameters are exchanged as part of the handshake itself. Refer to the ​Handshake​​ section later in this document for details.
 
+握手控制数据包（“包类型”位 = 1）用于在点对点 SRT 会话中的两个对等点之间建立连接。SRT 的原始版本依靠握手扩展来在打开连接后立即交换某些参数，但是从版本 1.3 开始，集成机制确保所有参数都作为握手本身的一部分进行交换。有关详细信息，请参阅本文档后面的“握手”部分。
 
+![PACKET_STRUCTURE_3](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_3.jpg)
 
+## KM Error Response Packets **关键消息错误响应数据包**
 
+Key Message Error Response control packets (“packet type” bit = 1) are used to exchange error status messages between peers. Refer to the ​Encryption​​ section later in this document for details.
 
+关键消息错误响应控制数据包（“包类型”位 = 1）用于在同级之间交换错误状态消息。有关详细信息，请参阅本文档后面的加密部分。
 
+![PACKET_STRUCTURE_4](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_4.jpg)
+
+## ACK Packets **确认包**
+
+Acknowledgement (ACK) control packets (“packet type” bit = 1) are used to provide data packet delivery status and RTT information. Refer to the ​SRT Data Transmission and Control​​ section later in this document for details.
+
+确认（ACK）控制包（“包类型”位 = 1）用于提供数据包传递状态和 RTT 信息。有关详细信息，请参阅本文档后面的 SRT 数据传输和控制部分。
+
+![PACKET_STRUCTURE_5](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_5.jpg)
+
+## Keep-alive Packets **心跳包**
+
+Keep-alive control packets (“packet type” bit = 1) are exchanged approximately every 10 ms to enable SRT streams to be automatically restored after a connection loss.
+
+心跳控制包（“包类型”位 = 1）大约每 10 毫秒交换一次，以使 SRT 流在连接断开后能够自动恢复。
+
+![PACKET_STRUCTURE_6](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_6.jpg)
+
+## NAK Control Packets **否定确认包**
+
+Negative acknowledgement (NAK) control packets (“packet type” bit = 1) are used to signal failed data packet deliveries. Refer to the ​SRT Data Transmission and Control ​​section later in this document for details.
+
+否定确认（NAK）控制包（“包类型”位 = 1）用于发信号通知失败的数据包传递。有关详细信息，请参阅本文档后面的 SRT 数据传输和控制部分。
+
+![PACKET_STRUCTURE_7](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_7.jpg)
+
+## SHUTDOWN Control Packets **关闭控制包**
+
+Shutdown control packets (“packet type” bit = 1) are used to initiate the closing of an SRT connection.
+
+关闭控制包（“包类型”位 = 1）用于关闭进行中的 SRT 连接。
+
+![PACKET_STRUCTURE_8](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_8.jpg)
+
+## ACKACK Control Packets **ACK 确认控制包**
+
+ACKACK control packets (“packet type” bit = 1) are used to acknowledge the reception of an ACK, and are instrumental in the ongoing calculation of RTT. Refer to the ​**SRT Data Transmission and Control​​** section later in this document for details.
+
+ACK 确认控制包（“包类型”位 = 1）用于确认 ACK 的接收，并在正在进行的 RTT 计算中发挥作用。有关详细信息，请参阅本文档后面的 **SRT 数据传输和控制** 部分。
+
+![PACKET_STRUCTURE_9](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_9.jpg)
+
+## Extended Control Message Packets
+
+Extended Control Message packets (“packet type” bit = 1) are repurposed from the original UDT User control packets. They are used in the SRT extended handshake, either through separate messages, or inside the handshake. Note that they are not intended to be used as user extensions.
+
+扩展控制消息包（“包类型”位 = 1）重用了原始 UDT 用户控制数据包。通过单独的消息或在握手中将它们用于 SRT 扩展握手中。请注意，它们不打算用作用户扩展。
+
+![PACKET_STRUCTURE_10](./Resources/PACKET_STRUCTURE/PACKET_STRUCTURE_10.jpg)
